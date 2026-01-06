@@ -2,206 +2,174 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Cache Expired</title>
+<title>Updating Filenest</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 :root {
-    --bg: #020617;
-    --card: #020617;
-    --border: #1e293b;
-    --accent: #38bdf8;
-    --text: #e5e7eb;
-    --muted: #94a3b8;
+    --bg: #ffffff;
+    --card: #ffffff;
+    --border: #e5e7eb;
+    --text: #0f172a;
+    --muted: #64748b;
+    --accent: #2563eb;
 }
 
-* { box-sizing: border-box; }
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #020617;
+        --card: #020617;
+        --border: #1e293b;
+        --text: #e5e7eb;
+        --muted: #94a3b8;
+        --accent: #60a5fa;
+    }
+}
+
+* {
+    box-sizing: border-box;
+}
 
 body {
     margin: 0;
-    height: 100vh;
-    background:
-        radial-gradient(600px 300px at 50% 20%, rgba(56,189,248,.08), transparent),
-        var(--bg);
+    min-height: 100vh;
+    background: var(--bg);
+    color: var(--text);
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: system-ui, -apple-system, sans-serif;
-    color: var(--text);
-    overflow: hidden;
+    padding: 16px;
 }
 
-/* floating glow */
-.glow {
-    position: absolute;
-    width: 300px;
-    height: 300px;
-    background: radial-gradient(circle, rgba(56,189,248,.25), transparent 70%);
-    filter: blur(60px);
-    animation: float 8s ease-in-out infinite;
-}
-
-@keyframes float {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-40px); }
-    100% { transform: translateY(0); }
+.container {
+    width: 100%;
+    max-width: 420px;
 }
 
 .card {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    max-width: 440px;
-    padding: 32px;
-    border-radius: 18px;
     border: 1px solid var(--border);
-    background: linear-gradient(180deg, rgba(255,255,255,.03), transparent);
-    backdrop-filter: blur(6px);
-    animation: popIn .6s ease-out;
+    border-radius: 16px;
+    padding: 24px;
+    animation: fadeUp 0.6s ease both;
 }
 
-@keyframes popIn {
-    from { transform: scale(.96); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
+.header {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 6px;
 }
 
-.icon {
-    width: 56px;
-    height: 56px;
-    margin: 0 auto 14px;
-    border-radius: 14px;
-    border: 1px solid var(--border);
-    display: grid;
-    place-items: center;
-    color: var(--accent);
-    animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-    0%,100% { box-shadow: 0 0 0 rgba(56,189,248,0); }
-    50% { box-shadow: 0 0 25px rgba(56,189,248,.35); }
-}
-
-h1 {
-    margin: 0;
-    font-size: 1.6rem;
-    text-align: center;
-}
-
-p {
-    margin: 10px 0 0;
-    font-size: .95rem;
-    text-align: center;
+.sub {
     color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.loader {
+    margin: 20px 0 12px;
+    height: 4px;
+    background: var(--border);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.loader span {
+    display: block;
+    height: 100%;
+    width: 40%;
+    background: var(--accent);
+    border-radius: inherit;
+    animation: slide 1.2s infinite ease-in-out;
 }
 
 .status {
-    margin-top: 18px;
-    text-align: center;
-    font-size: .9rem;
-    letter-spacing: .3px;
+    font-size: 0.85rem;
+    color: var(--muted);
+    min-height: 1em;
 }
 
-/* animated dots */
-.dots::after {
-    content: '';
-    animation: dots 1.5s infinite;
+@keyframes slide {
+    0% { transform: translateX(-100%); }
+    50% { transform: translateX(120%); }
+    100% { transform: translateX(120%); }
 }
 
-@keyframes dots {
-    0% { content: ''; }
-    33% { content: '.'; }
-    66% { content: '..'; }
-    100% { content: '...'; }
-}
-
-/* subtle scan line */
-.scan {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background: linear-gradient(
-        transparent,
-        rgba(255,255,255,.03),
-        transparent
-    );
-    animation: scan 6s linear infinite;
-}
-
-@keyframes scan {
-    from { transform: translateY(-100%); }
-    to { transform: translateY(100%); }
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 </style>
 </head>
 
 <body>
+<div class="container">
+    <div class="card">
+        <div class="header">Updating Filenest</div>
+        <div class="sub">
+            Cache expired. Refreshing app data to keep everything fast and safe.
+        </div>
 
-<div class="glow"></div>
+        <div class="loader"><span></span></div>
 
-<div class="card">
-    <div class="scan"></div>
-
-    <div class="icon">⚠️</div>
-    <h1>Cache Expired</h1>
-    <p>App was offline too long. Refreshing data and syncing…</p>
-    <div class="status">
-        <span id="status" class="dots">Starting recovery</span>
+        <div class="status" id="status">Initializing…</div>
     </div>
 </div>
 
 <script>
 const statusEl = document.getElementById('status');
-const messages = [
-    "Checking connection",
-    "Contacting server",
-    "Refreshing cache",
-    "Syncing files",
-    "Almost there"
-];
-let msgIndex = 0;
+let dots = 0;
 
-function talk(msg) {
-    statusEl.textContent = msg;
-    statusEl.classList.add('dots');
+function setStatus(text) {
+    dots = (dots + 1) % 4;
+    statusEl.textContent = text + '.'.repeat(dots);
 }
 
-async function tellServiceWorker() {
-    if (!('serviceWorker' in navigator)) return;
+async function refreshCache() {
+    if (!('serviceWorker' in navigator)) {
+        setStatus('Service worker unavailable');
+        return;
+    }
 
     const reg = await navigator.serviceWorker.ready;
+
+    // Speak in the exact language your SW understands
     reg.active?.postMessage({ type: 'RECACHE_ALL' });
+
     await reg.update();
+    setStatus('Refreshing cache');
 }
 
 async function tryRecover() {
     if (!navigator.onLine) {
-        talk("No internet connection");
+        setStatus('Waiting for internet');
         return;
     }
 
     try {
         const res = await fetch('/home', { cache: 'no-store' });
         if (res.status === 200) {
-            statusEl.classList.remove('dots');
-            statusEl.textContent = "Recovered. Redirecting 🚀";
-            setTimeout(() => location.replace('/home'), 900);
+            statusEl.textContent = 'Update complete. Redirecting…';
+            setTimeout(() => location.replace('/home'), 700);
+        } else {
+            setStatus('Server reachable');
         }
-    } catch {}
+    } catch {
+        setStatus('Reconnecting');
+    }
 }
 
-// start
-tellServiceWorker();
-talk(messages[msgIndex]);
+refreshCache();
+tryRecover();
 
-setInterval(() => {
-    msgIndex = (msgIndex + 1) % messages.length;
-    talk(messages[msgIndex]);
-    tryRecover();
-}, 3500);
-
+setInterval(tryRecover, 4000);
 window.addEventListener('online', tryRecover);
 </script>
-
 </body>
 </html>
