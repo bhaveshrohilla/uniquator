@@ -1,0 +1,148 @@
+.tool-container {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.subtitle {
+    color: var(--text-muted);
+    margin-top: -0.5rem;
+    text-align: center;
+}
+
+h1 { text-align: center; }
+
+/* Drop Zone */
+.drop-zone {
+    border: 2px dashed var(--border-color);
+    padding: 4rem 2rem;
+    border-radius: 8px;
+    background: var(--hover-bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 1rem;
+}
+
+.drop-zone.drag-over {
+    border-color: var(--accent-color);
+    background: var(--border-color);
+}
+
+/* Steps */
+.step-hidden { display: none; }
+.step-active { display: block; animation: fadeIn 0.5s ease; }
+
+/* Toolbar */
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.toolbar-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.badge {
+    background: var(--text-color);
+    color: var(--bg-color);
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.btn-text {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+select {
+    padding: 6px 10px;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-color);
+    color: var(--text-color);
+    font-family: inherit;
+}
+
+/* Image List */
+.image-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 60vh;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+.image-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: var(--hover-bg);
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    transition: all 0.2s;
+}
+
+.image-thumb {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 4px;
+    background: #fff;
+}
+
+.image-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.image-name {
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.95rem;
+}
+
+.image-meta {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.image-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.remove-btn {
+    cursor: pointer;
+    color: var(--text-muted);
+}
+.remove-btn:hover { color: #ff4444; }
+
+.actions {
+    margin-top: 2rem;
+    text-align: center;
+}

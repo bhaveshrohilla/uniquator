@@ -1,0 +1,129 @@
+/* file: tools/src/css/tools-home.css */
+
+/* THEME CONFIGURATION
+   Default is the Spec-Compliant "Dark" (Black & White).
+   Automatically switches to "Light" (White & Black) if system prefers.
+*/
+:root {
+    /* Default Dark Theme Variables */
+    --bg-color: #000000;
+    --text-color: #ffffff;
+    --text-muted: #aaaaaa;
+    --border-color: #333333;
+    --card-bg: #000000;
+    --card-hover-bg: #111111;
+    --input-bg: #050505;
+    --focus-outline: #ffffff;
+}
+
+/* Light Theme Override (System Detection) */
+@media (prefers-color-scheme: light) {
+    :root {
+        --bg-color: #ffffff;
+        --text-color: #000000;
+        --text-muted: #555555;
+        --border-color: #e0e0e0;
+        --card-bg: #ffffff;
+        --card-hover-bg: #f5f5f5;
+        --input-bg: #fafafa;
+        --focus-outline: #000000;
+    }
+}
+
+/* BASE LAYOUT 
+*/
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Section Headers */
+.section-title {
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-color);
+}
+
+/* Search Bar (ChatGPT-style) */
+.search-container {
+    margin-bottom: 2rem;
+}
+
+.tool-search {
+    width: 100%;
+    padding: 1rem;
+    background: var(--input-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    font-family: inherit;
+    font-size: 1rem;
+    border-radius: 6px;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.tool-search:focus {
+    border-color: var(--focus-outline);
+}
+
+.tool-search::placeholder {
+    color: var(--text-muted);
+}
+
+/* Tool Grid System */
+.tool-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+}
+
+/* Tool Cards */
+.tool-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background: var(--card-bg);
+    color: var(--text-color);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    height: 100%;
+    cursor: pointer;
+}
+
+.tool-card:hover {
+    background: var(--card-hover-bg);
+    border-color: var(--focus-outline);
+    transform: translateY(-2px);
+}
+
+/* Card Content */
+.tool-card .material-icons {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    opacity: 0.9;
+    color: var(--text-color);
+}
+
+.tool-card h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.tool-card p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+}

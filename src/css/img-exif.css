@@ -1,0 +1,104 @@
+/* Steps */
+.step-hidden { display: none; }
+.step-active { display: block; animation: fadeIn 0.5s ease; }
+
+.editor-layout {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+/* Toolbar Styles */
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+.file-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+.btn-text {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.9rem;
+    text-decoration: underline;
+    padding: 0;
+}
+.btn-text:hover { color: var(--text-color); }
+
+/* Drop Zone Styles */
+.drop-zone {
+    border: 2px dashed var(--border-color);
+    border-radius: 8px;
+    padding: 4rem 2rem;
+    text-align: center;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    background: var(--bg-color);
+}
+.drop-zone:hover, .drop-zone.drag-over {
+    border-color: var(--text-color);
+    background: var(--hover-bg);
+}
+
+.preview-pane {
+    background: var(--hover-bg);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+}
+.preview-pane img {
+    max-width: 100%;
+    max-height: 500px;
+    object-fit: contain;
+}
+.metadata-pane {
+    background: var(--bg-color);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+.metadata-list { margin: 1.5rem 0; }
+.metadata-item {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.metadata-item strong { color: var(--text-muted); }
+.editor-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+@media (max-width: 992px) {
+    .editor-layout { grid-template-columns: 1fr; }
+}
+
+/* Disabled State */
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}

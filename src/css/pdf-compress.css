@@ -1,0 +1,85 @@
+/* file: tools/src/css/pdf-compress.css */
+
+.tool-container {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Drop Zone (Consistent with other tools) */
+.drop-zone {
+    border: 2px dashed var(--border-color);
+    padding: 4rem 2rem;
+    border-radius: 8px;
+    background: var(--hover-bg);
+    transition: all 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+.drop-zone.drag-over {
+    border-color: var(--accent-color);
+    background: var(--border-color);
+}
+
+/* Compression Card */
+.compression-card {
+    background: var(--hover-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.file-icon span {
+    font-size: 3rem;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+}
+
+/* Stats Comparison */
+.stats-grid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+    width: 100%;
+}
+
+.stat-box {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.value {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.stat-arrow {
+    color: var(--text-muted);
+}
+
+.status-text {
+    margin-bottom: 1.5rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* Helpers */
+.step-hidden { display: none; }
+.step-active { display: block; animation: fadeIn 0.5s ease; }
+.logogrey { color: var(--text-muted); font-weight: 400; margin-left: 0.5rem; }
