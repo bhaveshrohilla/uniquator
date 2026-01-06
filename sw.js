@@ -2,7 +2,7 @@ const CACHE_NAME = 'verticon-tools-v2';
 const CACHE_EXPIRY = 24 * 60 * 60 * 1000; // 1 day
 const MAX_OFFLINE_DAYS = 14 * 24 * 60 * 60 * 1000; // 14 days
 const CACHE_METADATA_KEY = 'cache-metadata';
-const CACHE_EXPIRED_HTML = '/cache_expired.html';
+const CACHE_EXPIRED_HTML = 'cache_expired';
 
 /* FULL fallback list, fixed + normalized */
 const FALLBACK_ASSETS = [
@@ -204,3 +204,4 @@ self.addEventListener('fetch', event => {
         }
     })());
 });
+
