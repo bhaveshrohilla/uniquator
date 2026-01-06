@@ -4,96 +4,99 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Primary SEO -->
-    <title>FileNest – Free Secure PDF & Image Tools | Client-Side by Uniquator</title>
+    <title>FileNest by Uniquator – Free Secure PDF & Image Tools</title>
 
-    <meta name="description" content="FileNest by Uniquator offers free, fast, and secure PDF & image tools. Merge, split, compress, and convert files 100% client-side. No uploads. Total privacy.">
-    <meta name="keywords" content="FileNest, PDF tools, image tools, merge PDF, split PDF, compress PDF, convert PDF, client-side PDF tools, secure PDF tools, privacy-first tools">
+    <!-- Strong SEO -->
+    <meta name="description" content="FileNest by Uniquator offers free, fast, and privacy-first PDF & Image tools. All processing happens client-side. No uploads. No signup. No cost.">
+    <meta name="keywords" content="FileNest, Uniquator, free PDF tools, image tools, client-side PDF, merge PDF, split PDF, compress PDF, privacy-first tools">
     <meta name="author" content="Uniquator">
-    <meta name="robots" content="index, follow, max-image-preview:large">
-
-    <!-- Canonical -->
-    <link rel="canonical" href="https://filenest.uniquator.me/">
+    <meta name="robots" content="index, follow">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="FileNest – Secure Client-Side PDF & Image Tools">
-    <meta property="og:description" content="Free privacy-first PDF & image tools. All processing happens in your browser. No uploads. No tracking.">
+    <meta property="og:title" content="FileNest – Free & Secure File Tools">
+    <meta property="og:description" content="Free client-side PDF and Image tools. Your files never leave your device.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://filenest.uniquator.me/">
-    <meta property="og:site_name" content="FileNest by Uniquator">
+    <meta property="og:url" content="https://filenest.uniquator.me">
 
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="FileNest – Secure PDF & Image Tools">
-    <meta name="twitter:description" content="Client-side PDF & image tools with zero uploads. Built for privacy.">
-
-    <!-- PWA / UX -->
-    <meta name="theme-color" content="#000000">
+    <!-- Absolute assets ONLY -->
     <link rel="manifest" href="https://filenest.uniquator.me/manifest.json">
-
-    <!-- Icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-    <!-- Styles -->
     <link rel="stylesheet" href="https://filenest.uniquator.me/src/commonstyles.css">
     <link rel="stylesheet" href="https://filenest.uniquator.me/src/css/landing.css">
-
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "FileNest",
-      "applicationCategory": "UtilitiesApplication",
-      "operatingSystem": "Web",
-      "url": "https://filenest.uniquator.me/",
-      "description": "Privacy-first client-side PDF and image tools. Merge, split, compress, and convert files without uploading.",
-      "publisher": {
-        "@type": "Organization",
-        "name": "Uniquator",
-        "url": "https://uniquator.me"
-      },
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      }
-    }
-    </script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <style>
-        /* Client-side 404 Overlay */
+        /* ===== FULLSCREEN 404 OVERLAY ===== */
         #client-404 {
             position: fixed;
             inset: 0;
-            background: rgba(0,0,0,0.85);
-            backdrop-filter: blur(6px);
+            z-index: 999999;
             display: none;
+        }
+
+        #client-404.light {
+            background: radial-gradient(circle at top, #ffffff, #e9e9e9 70%);
+            color: #111;
+        }
+
+        #client-404.dark {
+            background: radial-gradient(circle at top, #1b1b1b, #000000 70%);
+            color: #ffffff;
+        }
+
+        .error-wrap {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            z-index: 9999;
-        }
-
-        .error-box {
-            background: #111;
-            border: 1px solid #333;
-            padding: 40px 50px;
-            border-radius: 16px;
             text-align: center;
+            padding: 24px;
+            animation: fadeUp 0.45s ease forwards;
         }
 
-        .error-box h1 {
-            font-size: 4rem;
+        .error-wrap h1 {
+            font-size: clamp(6rem, 22vw, 14rem);
+            font-weight: 900;
+            letter-spacing: -0.06em;
+            line-height: 1;
+            opacity: 0.9;
         }
 
-        .error-box code {
-            display: inline-block;
-            margin-top: 8px;
-            padding: 4px 10px;
-            border-radius: 6px;
-            background: #222;
-            color: #fff;
-            font-size: 0.9rem;
+        .error-wrap .title {
+            font-size: 1.3rem;
+            margin-top: 6px;
+            opacity: 0.85;
+        }
+
+        .error-wrap .path {
+            margin-top: 18px;
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-family: monospace;
+            font-size: 0.95rem;
+            background: rgba(0,0,0,0.08);
+            word-break: break-all;
+        }
+
+        #client-404.dark .path {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .error-wrap button {
+            margin-top: 32px;
+            padding: 12px 40px;
+            border-radius: 999px;
+            border: none;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            background: #6cf2c2;
+            color: #000;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -101,7 +104,7 @@
 <body>
 
 <header class="fade-in">
-    <div class="logo">FileNest</div>
+    <div class="logo">FileNest <span class="logogrey">by Uniquator</span></div>
     <nav>
         <a href="mailto:support@uniquator.me" class="nav-link">Support</a>
     </nav>
@@ -111,10 +114,10 @@
 
     <section class="hero">
         <div class="hero-content">
-            <h1>Secure PDF & Image Tools,<br><span class="highlight">Right in Your Browser.</span></h1>
+            <h1>Your Files, <span class="highlight">Your Privacy.</span></h1>
             <p class="hero-sub">
-                FileNest runs entirely client-side. Your files never leave your device.
-                Fast, private, and free.
+                Free, fast, and secure PDF & Image tools that run entirely in your browser.
+                No uploads. No tracking. No cost.
             </p>
             <button id="start-now-btn" class="btn btn-large">
                 Start Now <span class="material-icons">arrow_forward</span>
@@ -130,38 +133,41 @@
 
     <section class="features">
         <div class="feature-card">
-            <span class="material-icons">security</span>
-            <h3>Privacy-First</h3>
-            <p>No uploads. No servers. Your data stays on your device.</p>
+            <span class="material-icons feature-icon">security</span>
+            <h3>100% Client-Side</h3>
+            <p>Your files never leave your device. Everything runs locally in your browser.</p>
         </div>
+
         <div class="feature-card">
             <span class="material-icons">speed</span>
             <h3>Instant Processing</h3>
-            <p>Powered by modern browser APIs and WebAssembly.</p>
+            <p>No upload delays. Powered by modern browser APIs and WebAssembly.</p>
         </div>
+
         <div class="feature-card">
             <span class="material-icons">all_inclusive</span>
-            <h3>Complete Toolkit</h3>
-            <p>Merge, split, compress, convert PDFs and images.</p>
+            <h3>All-in-One Tools</h3>
+            <p>Merge, split, compress, convert PDFs and images in one clean interface.</p>
         </div>
     </section>
 
     <footer>
         <div class="footer-links">
-            <a href="https://filenest.uniquator.me/privacy.html">Privacy Policy</a>
-            <a href="https://filenest.uniquator.me/terms.html">Terms & Conditions</a>
-            <a href="mailto:support@uniquator.me">Contact Support</a>
+            <a href="https://filenest.uniquator.me/privacy.html">Privacy</a>
+            <a href="https://filenest.uniquator.me/terms.html">Terms</a>
+            <a href="mailto:support@uniquator.me">Support</a>
         </div>
-        <p>&copy; 2025 Uniquator FileNest. All rights reserved.</p>
+        <p>© 2025 Uniquator. All rights reserved.</p>
     </footer>
 
 </main>
 
-<!-- 404 Overlay -->
+<!-- FULLSCREEN 404 OVERLAY -->
 <div id="client-404">
-    <div class="error-box">
+    <div class="error-wrap">
         <h1>404</h1>
-        <p>Page not found:<br><code id="bad-path"></code></p>
+        <div class="title">Page not found</div>
+        <div class="path" id="bad-path"></div>
         <button id="go-home">OK</button>
     </div>
 </div>
@@ -173,16 +179,23 @@
     const allowed = ['/', '/index', '/index.html'];
     const path = location.pathname;
 
+    const overlay = document.getElementById('client-404');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    overlay.classList.add(prefersDark ? 'dark' : 'light');
+
     if (!allowed.includes(path)) {
+        document.body.style.overflow = 'hidden';
         document.getElementById('bad-path').textContent = path;
-        document.getElementById('client-404').style.display = 'flex';
-        document.getElementById('go-home').onclick = () =>
+        overlay.style.display = 'block';
+
+        document.getElementById('go-home').onclick = () => {
             location.href = 'https://filenest.uniquator.me';
+        };
     }
 
-    const btn = document.getElementById('start-now-btn');
-    if (btn) btn.onclick = () =>
+    document.getElementById('start-now-btn').onclick = () => {
         location.href = 'https://filenest.uniquator.me/home';
+    };
 })();
 </script>
 
