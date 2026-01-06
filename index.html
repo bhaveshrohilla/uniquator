@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filenest Tools - Secure PDF & Image Utilities</title>
+    <meta name="description" content="Free, secure, and client-side PDF and image tools. Merge, split, compress, and convert files without uploading them to a server.">
+    <meta name="keywords" content="PDF tools, image tools, client-side, secure, merge PDF, split PDF, compress PDF, convert PDF, image conversion, privacy, WebAssembly">
+    <meta name="author" content="Uniquator">
+    <meta name="robots" content="index, follow">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="src/commonstyles.css">
+    <link rel="stylesheet" href="src/css/landing.css">
+</head>
+<body>
+
+    <header class="fade-in">
+        <div class="logo">Filenest <span class="logogrey"></span></div>
+        <nav>
+            <a href="mailto:support@uniquator.me" class="nav-link">Support</a>
+        </nav>
+    </header>
+
+    <main class="fade-in">
+        
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Your Files, <span class="highlight">Your Privacy.</span></h1>
+                <p class="hero-sub">Powerful PDF and Image tools running entirely in your browser. No server uploads, no data leaks.</p>
+                <button id="start-now-btn" class="btn btn-large">
+                    Start Now <span class="material-icons">arrow_forward</span>
+                </button>
+            </div>
+            <div class="hero-visual">
+                <span class="material-icons floating-icon i1">lock</span>
+                <span class="material-icons floating-icon i2">picture_as_pdf</span>
+                <span class="material-icons floating-icon i3">image</span>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="feature-card">
+                <span class="material-icons feature-icon">security</span>
+                <h3>100% Client-Side</h3>
+                <p>Files never leave your device. All processing happens locally in your browser for maximum security.</p>
+            </div>
+            <div class="feature-card">
+                <span class="material-icons">speed</span>
+                <h3>Lightning Fast</h3>
+                <p>No upload or download wait times. Instant processing powered by WebAssembly.</p>
+            </div>
+            <div class="feature-card">
+                <span class="material-icons">all_inclusive</span>
+                <h3>All-in-One Suite</h3>
+                <p>Merge, Split, Compress, Convert, and Edit. Everything you need for PDFs and Images.</p>
+            </div>
+        </section>
+
+        <footer>
+            <div class="footer-links">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms & Conditions</a>
+                <a href="mailto:support.tools@verticon.tech">Contact Support</a>
+            </div>
+            <p>&copy; 2025 Verticon Tools. All rights reserved.</p>
+        </footer>
+
+    </main>
+
+    <script src="src/commonscript.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Handle Start Button
+            document.getElementById('start-now-btn').addEventListener('click', async () => {
+                try {
+                    await VerticonDB.setSetting('visited_home', true);
+                } catch(e) { console.error(e); }
+                window.location.href = '/home';
+            });
+        });
+    </script>
+</body>
+</html>

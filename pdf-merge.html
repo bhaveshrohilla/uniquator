@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merge PDF Files Online - Combine PDFs for Free | Filenest</title>
+    <meta name="description" content="Merge multiple PDF files into one document online for free. Fast, secure, and easy to use PDF combiner. No file upload required.">
+    <meta name="keywords" content="merge PDF, combine PDF files, online PDF merger, free PDF merge, client-side PDF merging, privacy, WebAssembly">
+    <meta name="author" content="Uniquator">
+    <meta name="robots" content="index, follow">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+
+    <link rel="stylesheet" href="src/commonstyles.css">
+    <link rel="stylesheet" href="src/css/pdf-merge.css">
+</head>
+<body>
+
+    <div id="global-loader">
+        <span class="material-icons" style="font-size: 3rem; animation: spin 1s linear infinite;">sync</span>
+    </div>
+
+    <header class="fade-in">
+        <div class="logo">Filenest <span style="font-weight:400; color: #888;">/ Merge</span></div>
+        <a href="home" class="btn-icon"><span class="material-icons">close</span></a>
+    </header>
+
+    <main class="fade-in">
+        <section class="tool-container">
+            <h1>Merge PDF Files</h1>
+            <p style="color: var(--text-muted); margin-bottom: 2rem;">Combine multiple PDFs into a single document. Fully client-side.</p>
+
+            <div id="drop-zone" class="drop-zone">
+                <span class="material-icons" style="font-size: 3rem; color: var(--text-muted);">upload_file</span>
+                <p>Drag & Drop PDF files here</p>
+                <button class="btn btn-outline" onclick="document.getElementById('file-input').click()">Select Files</button>
+                <input type="file" id="file-input" multiple accept="application/pdf" style="display: none;">
+            </div>
+
+            <div id="file-list" class="file-list">
+                </div>
+
+            <div class="action-bar">
+                <button id="merge-btn" class="btn" disabled>
+                    <span class="material-icons">call_merge</span> Merge PDFs
+                </button>
+                <a id="download-link" class="btn btn-outline" style="display: none;">
+                    <span class="material-icons">download</span> Download Result
+                </a>
+            </div>
+
+            <div id="status-msg" style="margin-top: 1rem; color: var(--text-muted); font-size: 0.9rem;"></div>
+        </section>
+    </main>
+
+    <script src="src/commonscript.js"></script>
+    <script src="src/js/pdf-merge.js"></script>
+</body>
+</html>

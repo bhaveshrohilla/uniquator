@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Split PDF Online - Extract Pages from PDF | Filenest</title>
+    <meta name="description" content="Split PDF files online. Extract specific pages or ranges from your PDF documents easily and securely. Free PDF splitter tool.">
+    <meta name="keywords" content="split PDF, extract PDF pages, online PDF splitter, client-side PDF splitting, privacy, WebAssembly">
+    <meta name="author" content="Uniquator">
+    <meta name="robots" content="index, follow">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+    <script>
+        // Set worker path for PDF.js
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+    </script>
+
+    <link rel="stylesheet" href="src/commonstyles.css">
+    <link rel="stylesheet" href="src/css/pdf-split.css">
+</head>
+<body>
+
+    <div id="global-loader">
+        <span class="material-icons" style="font-size: 3rem; animation: spin 1s linear infinite;">sync</span>
+    </div>
+
+    <header class="fade-in">
+        <div class="logo">Filenest <span class="logogrey">/ Split</span></div>
+        <a href="home" class="btn-icon"><span class="material-icons">close</span></a>
+    </header>
+
+    <main class="fade-in">
+        <section class="tool-container">
+            
+            <div id="step-upload" class="step-active">
+                <h1 style="margin-bottom: 1rem;">Split PDF</h1>
+                <div id="drop-zone" class="drop-zone">
+                    <span class="material-icons" style="font-size: 3rem; color: #555;">call_split</span>
+                    <p>Drag & Drop a PDF to begin</p>
+                    <button class="btn btn-outline" onclick="document.getElementById('file-input').click()">Select PDF</button>
+                    <input type="file" id="file-input" accept="application/pdf" style="display: none;">
+                </div>
+            </div>
+
+            <div id="step-editor" class="step-hidden">
+                
+                <div class="toolbar">
+                    <div class="file-meta">
+                        <span class="material-icons">description</span>
+                        <span id="file-name">doc.pdf</span>
+                        <span id="page-count-badge" class="badge">0 pages</span>
+                    </div>
+                    <button id="reset-btn" class="btn-text">Change File</button>
+                </div>
+
+                <div class="editor-tabs">
+                    <button class="tab-btn active" data-tab="visual">
+                        <span class="material-icons">grid_view</span> Visual Editor
+                    </button>
+                    <button class="tab-btn" data-tab="range">
+                        <span class="material-icons">dialpad</span> Page Ranges
+                    </button>
+                </div>
+
+                <div id="tab-visual" class="tab-content active">
+                    <div class="grid-controls">
+                        <p>Select pages to <strong>extract</strong> into a new PDF.</p>
+                        <div class="selection-actions">
+                            <button id="select-all" class="btn-small">Select All</button>
+                            <button id="deselect-all" class="btn-small">Clear</button>
+                        </div>
+                    </div>
+                    
+                    <div id="pdf-grid" class="pdf-grid">
+                        </div>
+                </div>
+
+                <div id="tab-range" class="tab-content">
+                    <label class="input-label">Page Ranges:</label>
+                    <input type="text" id="range-input" class="big-input" placeholder="e.g. 1-5, 8, 10-12">
+                    <p class="hint">Use commas for specific pages and hyphens for ranges.</p>
+                </div>
+
+                <div class="action-footer">
+                    <div id="selection-summary">0 pages selected</div>
+                    <button id="split-btn" class="btn">
+                        <span class="material-icons">content_cut</span> Split & Download
+                    </button>
+                </div>
+            </div>
+
+            <div id="status-msg"></div>
+
+        </section>
+    </main>
+
+    <script src="src/commonscript.js"></script>
+    <script src="src/js/pdf-split.js"></script>
+</body>
+</html>

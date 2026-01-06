@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rearrange PDF Pages - Reorder & Remove Pages | Filenest</title>
+    <meta name="description" content="Rearrange PDF pages online. Drag and drop to reorder pages or remove unwanted pages from your PDF document easily.">
+    <meta name="keywords" content="rearrange PDF, reorder PDF pages, remove PDF pages, online PDF editor, client-side PDF editing, privacy, WebAssembly">
+    <meta name="author" content="Uniquator">
+    <meta name="robots" content="index, follow">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="src/commonstyles.css">
+    <link rel="stylesheet" href="src/css/pdf-rearrange.css">
+
+    <!-- PDF Libraries -->
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+    <script>
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+    </script>
+</head>
+<body>
+
+    <div id="global-loader">
+        <span class="material-icons" style="font-size: 3rem; animation: spin 1s linear infinite;">sync</span>
+    </div>
+
+    <header class="fade-in">
+        <div class="logo">Filenest <span class="logogrey">/ Rearrange</span></div>
+        <a href="home" class="btn-icon"><span class="material-icons">close</span></a>
+    </header>
+
+    <main class="fade-in">
+        <section class="tool-container">
+            
+            <div id="step-upload" class="step-active">
+                <h1>Rearrange PDF Pages</h1>
+                <p class="subtitle">Drag and drop pages to reorder. Click to remove.</p>
+                
+                <div id="drop-zone" class="drop-zone">
+                    <span class="material-icons" style="font-size: 3rem; color: var(--text-muted);">grid_view</span>
+                    <p>Drag & Drop a PDF here</p>
+                    <button class="btn btn-outline" onclick="document.getElementById('file-input').click()">Select PDF</button>
+                    <input type="file" id="file-input" accept="application/pdf" style="display: none;">
+                </div>
+            </div>
+
+            <div id="step-editor" class="step-hidden">
+                <div class="toolbar">
+                    <div class="file-info">
+                        <span class="material-icons">description</span>
+                        <span id="filename-display">file.pdf</span>
+                    </div>
+                    <div class="actions-right">
+                        <button id="save-btn" class="btn">
+                            <span class="material-icons">save</span> Save PDF
+                        </button>
+                        <button id="convert-new-btn" class="btn btn-outline">
+                            <span class="material-icons">autorenew</span> Convert New
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Main Grid (for < 10 pages) -->
+                <div id="main-grid" class="page-grid"></div>
+
+                <p id="status-msg" class="status-text"></p>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- Modal for Large Documents (> 10 pages) -->
+    <div id="large-doc-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Rearrange Pages</h2>
+                <button id="close-modal-btn" class="btn-icon"><span class="material-icons">close</span></button>
+            </div>
+            <div id="modal-grid" class="page-grid scrollable-grid"></div>
+            <div class="modal-footer">
+                <button id="modal-done-btn" class="btn">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="src/commonscript.js"></script>
+    <script src="src/js/pdf-rearrange.js"></script>
+</body>
+</html>

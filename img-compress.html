@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Compressor - Reduce Image Size Online | Filenest</title>
+    <meta name="description" content="Compress images online without losing quality. Reduce JPG, PNG, and WEBP file sizes for faster loading websites.">
+    <meta name="keywords" content="image compression, online image compressor, reduce image size, JPG compressor, PNG compressor, WEBP compressor, client-side image compression, privacy, WebAssembly">
+    <meta name="author" content="Uniquator">
+    <meta name="robots" content="index, follow">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="src/commonstyles.css">
+    <link rel="stylesheet" href="src/css/img-compress.css">
+
+    <!-- Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+</head>
+<body>
+
+    <div id="global-loader">
+        <span class="material-icons" style="font-size: 3rem; animation: spin 1s linear infinite;">sync</span>
+    </div>
+
+    <header class="fade-in">
+        <div class="logo">Filenest <span class="logogrey">/ Compressor</span></div>
+        <a href="home" class="btn-icon"><span class="material-icons">close</span></a>
+    </header>
+
+    <main class="fade-in">
+        <section class="tool-container">
+            
+            <div id="step-upload" class="step-active">
+                <h1>Image Compressor</h1>
+                <p class="subtitle">Reduce image size while maintaining quality.</p>
+                
+                <div id="drop-zone" class="drop-zone">
+                    <span class="material-icons" style="font-size: 3rem; color: var(--text-muted);">photo_size_select_small</span>
+                    <p>Drag & Drop images here</p>
+                    <button class="btn btn-outline" onclick="document.getElementById('file-input').click()">Select Images</button>
+                    <input type="file" id="file-input" accept="image/*" multiple style="display: none;">
+                </div>
+            </div>
+
+            <div id="step-editor" class="step-hidden">
+                
+                <!-- Settings Panel -->
+                <div class="settings-panel">
+                    <div class="mode-selector">
+                        <label class="radio-label">
+                            <input type="radio" name="mode" value="auto" checked> 
+                            <span>Auto Mode</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="mode" value="target"> 
+                            <span>Target Size</span>
+                        </label>
+                    </div>
+
+                    <div id="setting-auto" class="setting-content">
+                        <label>Preference:</label>
+                        <div class="range-container">
+                            <input type="range" id="quality-slider" min="0" max="2" step="1" value="1">
+                            <div class="range-labels">
+                                <span>Small Size</span>
+                                <span>Balanced</span>
+                                <span>Keep Quality</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="setting-target" class="setting-content" style="display: none;">
+                        <label for="target-size-input">Max Size (KB):</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="target-size-input" min="100" value="200">
+                            <span class="unit">KB</span>
+                        </div>
+                        <p class="hint">Minimum 100 KB</p>
+                    </div>
+                </div>
+
+                <div class="toolbar">
+                    <span id="count-badge" class="badge">0 images</span>
+                    <div class="toolbar-actions">
+                        <button id="add-more-btn" class="btn-text">Add More</button>
+                        <button id="clear-all-btn" class="btn-text" style="color: #ff4444;">Clear All</button>
+                    </div>
+                </div>
+
+                <div id="image-list" class="image-list"></div>
+
+                <div class="actions">
+                    <p id="status-msg" class="status-text"></p>
+                    <div class="btn-group">
+                        <button id="compress-btn" class="btn">
+                            <span class="material-icons">compress</span> Compress All
+                        </button>
+                        <button id="download-zip-btn" class="btn" style="display: none;">
+                            <span class="material-icons">folder_zip</span> Download ZIP
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+    <script src="src/commonscript.js"></script>
+    <script src="src/js/img-compress.js"></script>
+</body>
+</html>

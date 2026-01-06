@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Resizer - Resize Images Online | Filenest</title>
+    <meta name="description" content="Resize images online to specific pixel dimensions. Change image width and height while maintaining aspect ratio.">
+    <meta name="keywords" content="image resizing, online image resizer, resize image, change image dimensions, JPG resizer, PNG resizer, WEBP resizer, client-side image resizing, privacy, WebAssembly">
+    <meta name="author" content="Uniquator">
+    <meta name="robots" content="index, follow">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="src/commonstyles.css">
+    <link rel="stylesheet" href="src/css/img-resize.css">
+
+    <!-- Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+</head>
+<body>
+
+    <div id="global-loader">
+        <span class="material-icons" style="font-size: 3rem; animation: spin 1s linear infinite;">sync</span>
+    </div>
+
+    <header class="fade-in">
+        <div class="logo">Filenest <span class="logogrey">/ Resizer</span></div>
+        <a href="home" class="btn-icon"><span class="material-icons">close</span></a>
+    </header>
+
+    <main class="fade-in">
+        <section class="tool-container">
+            
+            <div id="step-upload" class="step-active">
+                <h1>Image Resizer</h1>
+                <p class="subtitle">Resize images to specific dimensions and formats.</p>
+                
+                <div id="drop-zone" class="drop-zone">
+                    <span class="material-icons" style="font-size: 3rem; color: var(--text-muted);">aspect_ratio</span>
+                    <p>Drag & Drop images here</p>
+                    <button class="btn btn-outline" onclick="document.getElementById('file-input').click()">Select Images</button>
+                    <input type="file" id="file-input" accept="image/*" multiple style="display: none;">
+                </div>
+            </div>
+
+            <div id="step-editor" class="step-hidden">
+                
+                <!-- Settings Panel -->
+                <div class="settings-panel">
+                    <div class="setting-row">
+                        <div class="input-group">
+                            <label>Width (px)</label>
+                            <input type="number" id="width-input" value="512" min="1">
+                        </div>
+                        <div class="link-icon">
+                            <span class="material-icons" id="ratio-icon" title="Maintain Aspect Ratio">link</span>
+                        </div>
+                        <div class="input-group">
+                            <label>Height (px)</label>
+                            <input type="number" id="height-input" value="512" min="1">
+                        </div>
+                    </div>
+
+                    <div class="setting-row options-row">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="maintain-ratio" checked>
+                            Maintain Aspect Ratio (Fit)
+                        </label>
+                        
+                        <div class="format-select">
+                            <label>Export as:</label>
+                            <select id="format-select">
+                                <option value="png">PNG</option>
+                                <option value="jpg">JPG</option>
+                                <option value="webp">WEBP</option>
+                                <option value="ico">ICO</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="toolbar">
+                    <span id="count-badge" class="badge">0 images</span>
+                    <div class="toolbar-actions">
+                        <button id="add-more-btn" class="btn-text">Add More</button>
+                        <button id="clear-all-btn" class="btn-text" style="color: #ff4444;">Clear All</button>
+                    </div>
+                </div>
+
+                <div id="image-list" class="image-list"></div>
+
+                <div class="actions">
+                    <p id="status-msg" class="status-text"></p>
+                    <div class="btn-group">
+                        <button id="resize-btn" class="btn">
+                            <span class="material-icons">transform</span> Resize & Download
+                        </button>
+                        <button id="download-zip-btn" class="btn" style="display: none;">
+                            <span class="material-icons">folder_zip</span> Download ZIP
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+    <script src="src/commonscript.js"></script>
+    <script src="src/js/img-resize.js"></script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+Filenest<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Converter - Convert JPG, PNG, WEBP, ICO | Filenest</title>
+    <meta name="description" content="Free online image converter. Convert images between PNG, JPG, WEBP, ICO, and SVG formats instantly. Bulk conversion supported.">
+    <meta name="keywords" content="image conversion, online image converter, PNG converter, JPG converter, WEBP converter, ICO converter, SVG converter, client-side image conversion, privacy, WebAssembly">
+    <meta name="author" content="Uniquator">
+    <meta name="robots" content="index, follow">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="src/commonstyles.css">
+    <link rel="stylesheet" href="src/css/img-convert.css">
+
+    <!-- Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+</head>
+<body>
+
+    <div id="global-loader">
+        <span class="material-icons" style="font-size: 3rem; animation: spin 1s linear infinite;">sync</span>
+    </div>
+
+    <header class="fade-in">
+        <div class="logo">Filenest <span class="logogrey">/ Converter</span></div>
+        <a href="home" class="btn-icon"><span class="material-icons">close</span></a>
+    </header>
+
+    <main class="fade-in">
+        <section class="tool-container">
+            
+            <div id="step-upload" class="step-active">
+                <h1>Image Converter</h1>
+                <p class="subtitle">Convert images to PNG, JPG, WEBP, ICO, or SVG.</p>
+                
+                <div id="drop-zone" class="drop-zone">
+                    <span class="material-icons" style="font-size: 3rem; color: var(--text-muted);">transform</span>
+                    <p>Drag & Drop images here</p>
+                    <button class="btn btn-outline" onclick="document.getElementById('file-input').click()">Select Images</button>
+                    <input type="file" id="file-input" accept="image/*" multiple style="display: none;">
+                </div>
+            </div>
+
+            <div id="step-editor" class="step-hidden">
+                <div class="toolbar">
+                    <div class="toolbar-left">
+                        <span id="count-badge" class="badge">0 images</span>
+                    </div>
+                    <div class="toolbar-right">
+                        <label for="global-format">Convert all to:</label>
+                        <select id="global-format">
+                            <option value="">Select...</option>
+                            <option value="png">PNG</option>
+                            <option value="jpg">JPG</option>
+                            <option value="webp">WEBP</option>
+                            <option value="ico">ICO</option>
+                            <option value="svg">SVG</option>
+                        </select>
+                        <button id="add-more-btn" class="btn-text">Add More</button>
+                        <button id="clear-all-btn" class="btn-text" style="color: #ff4444;">Clear All</button>
+                    </div>
+                </div>
+
+                <div id="image-list" class="image-list">
+                    <!-- Items injected here -->
+                </div>
+
+                <div class="actions">
+                    <p id="status-msg" class="status-text"></p>
+                    <div class="btn-group">
+                        <button id="convert-btn" class="btn">
+                            <span class="material-icons">sync</span> Convert All
+                        </button>
+                        <button id="download-zip-btn" class="btn" style="display: none;">
+                            <span class="material-icons">folder_zip</span> Download ZIP
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- Hidden canvas for processing -->
+    <canvas id="process-canvas" style="display: none;"></canvas>
+
+    <script src="src/commonscript.js"></script>
+    <script src="src/js/img-convert.js"></script>
+</body>
+</html>

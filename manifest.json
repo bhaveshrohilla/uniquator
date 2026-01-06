@@ -1,0 +1,21 @@
+{
+  "name": "Uniquator Filenest",
+  "short_name": "FileNest",
+  "start_url": "home",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "src/images/128-128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "src/images/512-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EXIF Editor - Remove Image Metadata Online | Filenest</title>
+    <meta name="description" content="Edit or remove EXIF metadata from your images online. Quick removal of GPS and sensitive info. Secure, client-side processing.">
+    <meta name="keywords" content="EXIF editor, remove metadata, image privacy, GPS removal, online EXIF tool, client-side, privacy">
+    <meta name="author" content="Uniquator">
+    <meta name="robots" content="index, follow">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="src/commonstyles.css">
+    <link rel="stylesheet" href="src/css/img-exif.css">
+    
+    <!-- Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/piexifjs@1.0.6/piexif.min.js"></script>
+</head>
+<body>
+
+    <div id="global-loader">
+        <span class="material-icons" style="font-size: 3rem; animation: spin 1s linear infinite;">sync</span>
+    </div>
+
+    <header class="fade-in">
+        <div class="logo">Filenest <span class="logogrey">/ EXIF Editor</span></div>
+        <a href="home" class="btn-icon"><span class="material-icons">close</span></a>
+    </header>
+
+    <main class="fade-in">
+        <section class="tool-container">
+            
+            <div id="step-upload" class="step-active">
+                <h1>EXIF Editor</h1>
+                <p class="subtitle">View, edit, or strip metadata from your images.</p>
+                
+                <div id="drop-zone" class="drop-zone">
+                    <span class="material-icons" style="font-size: 3rem; color: var(--text-muted);">info</span>
+                    <p>Drag & Drop an image here</p>
+                    <button class="btn btn-outline" onclick="document.getElementById('file-input').click()">Select Image</button>
+                    <input type="file" id="file-input" accept="image/jpeg" style="display: none;">
+                </div>
+                <p class="hint" style="margin-top: 1rem; color: var(--text-muted);">Note: Currently supports JPEG images.</p>
+            </div>
+
+            <div id="step-editor" class="step-hidden">
+                <div class="toolbar">
+                    <div class="file-info">
+                        <span class="material-icons">image</span>
+                        <span id="filename-display">image.jpg</span>
+                    </div>
+                    <button id="reset-btn" class="btn-text">Change File</button>
+                </div>
+
+                <div class="editor-layout">
+                    <div class="preview-pane">
+                        <img id="image-preview" src="" alt="Preview">
+                    </div>
+                    
+                    <div class="metadata-pane">
+                        <h3>Metadata Summary</h3>
+                        <div id="metadata-list" class="metadata-list">
+                            <!-- Populated by JS -->
+                        </div>
+
+                        <div class="editor-actions">
+                            <button id="quick-clean-btn" class="btn btn-outline">
+                                <span class="material-icons">security</span> Quick Privacy Clean
+                            </button>
+                            <button id="download-btn" class="btn">
+                                <span class="material-icons">download</span> Save Image
+                            </button>
+                            <button id="convert-new-btn" class="btn btn-outline">
+                                <span class="material-icons">autorenew</span> Convert New
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="status-msg"></div>
+
+        </section>
+    </main>
+
+    <script src="src/commonscript.js"></script>
+    <script src="src/js/img-exif.js"></script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compress PDF Online - Reduce PDF File Size |Filenest </title>
+    <meta name="description" content="Compress PDF files online for free. Reduce PDF file size while maintaining quality. Client-side compression for privacy.">
+    <meta name="keywords" content="PDF compression, compress PDF online, reduce PDF size, online PDF compressor, client-side PDF compression, privacy, WebAssembly">
+    <meta name="author" content="Uniquator">
+    <meta name="robots" content="index, follow">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+
+    <link rel="stylesheet" href="src/commonstyles.css">
+    <link rel="stylesheet" href="src/css/pdf-compress.css">
+</head>
+<body>
+
+    <div id="global-loader">
+        <span class="material-icons" style="font-size: 3rem; animation: spin 1s linear infinite;">sync</span>
+    </div>
+
+    <header class="fade-in">
+        <div class="logo">Filenest <span class="logogrey">/ Compress</span></div>
+        <a href="home" class="btn-icon"><span class="material-icons">close</span></a>
+    </header>
+
+    <main class="fade-in">
+        <section class="tool-container">
+            
+            <div id="step-upload" class="step-active">
+                <h1>Compress PDF</h1>
+                <p style="color: var(--text-muted); margin-bottom: 2rem;">Optimize file structure to reduce size (Client-side).</p>
+                
+                <div id="drop-zone" class="drop-zone">
+                    <span class="material-icons" style="font-size: 3rem; color: #555;">compress</span>
+                    <p>Drag & Drop PDF here</p>
+                    <button class="btn btn-outline" onclick="document.getElementById('file-input').click()">Select PDF</button>
+                    <input type="file" id="file-input" accept="application/pdf" style="display: none;">
+                </div>
+            </div>
+
+            <div id="step-process" class="step-hidden">
+                <div class="compression-card">
+                    <div class="file-icon">
+                        <span class="material-icons">picture_as_pdf</span>
+                    </div>
+                    <h3 id="filename-display">filename.pdf</h3>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <span class="label">Original Size</span>
+                            <span class="value" id="old-size">0 MB</span>
+                        </div>
+                        <div class="stat-arrow">
+                            <span class="material-icons">arrow_forward</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="label">New Size</span>
+                            <span class="value" id="new-size">...</span>
+                        </div>
+                    </div>
+
+                    <div id="compression-status" class="status-text">Ready to optimize</div>
+                    
+                    <button id="compress-btn" class="btn">
+                        <span class="material-icons">compress</span> Compress Now
+                    </button>
+
+                    <a id="download-btn" class="btn btn-outline" style="display: none; margin-top: 1rem;">
+                        <span class="material-icons">download</span> Download Optimized PDF
+                    </a>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <script src="src/commonscript.js"></script>
+    <script src="src/js/pdf-compress.js"></script>
+</body>
+</html>

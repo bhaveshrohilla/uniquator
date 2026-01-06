@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filenest - IDF Platform</title>
+    <meta name="description" content="Learn about IDF (Interactive Document Format) - Safe, fast, and easy to use.">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="manifest" href="../manifest.json">
+    <link rel="stylesheet" href="../src/commonstyles.css">
+    <style>
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        h2 {
+            font-size: 1.5rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: var(--border-color);
+            color: var(--text-color);
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-bottom: 2rem;
+            transition: color 0.2s;
+        }
+        .back-link:hover {
+            color: var(--text-color);
+        }
+        @media (max-width: 768px) {
+            main { padding: 2rem 1rem; }
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="fade-in">
+        <div class="logo">Filenest <span class="logogrey">/IDF</span></div>
+        <nav>
+            <a href="mailto:support@uniquator.me" class="nav-link">Support</a>
+        </nav>
+    </header>
+
+    <main class="fade-in">
+        <a href="home" class="back-link">
+            <span class="material-icons" style="font-size: 1.2rem; margin-right: 0.5rem;">arrow_back</span>
+            Back to Tools
+        </a>
+
+        <article>
+            <span class="badge">Under Development</span>
+            <h1>Interactive Document Format (IDF)</h1>
+            
+            <p>
+                IDF is an <strong>Interactive Document Format</strong> designed to be safe, fast, and easy to use. 
+                It represents a new standard for documents that require user interaction without compromising security or performance.
+            </p>
+            <p>
+                By processing everything client-side, IDF ensures your data remains private while delivering a responsive and seamless user experience.
+            </p>
+
+            <h2>Advanced Details</h2>
+            <p>
+                The platform is currently in the final stages of development. We are optimizing the format for maximum compatibility and speed.
+            </p>
+            <p>
+                <strong>Expected Release:</strong> Late January.
+            </p>
+        </article>
+    </main>
+
+    <script src="../src/commonscript.js"></script>
+</body>
+</html>
