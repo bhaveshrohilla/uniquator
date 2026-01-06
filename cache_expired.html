@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cache Expired</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0f172a;
+            color: #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .box {
+            max-width: 420px;
+            padding: 24px;
+            border-radius: 14px;
+            background: #020617;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+
+        h1 {
+            margin-bottom: 10px;
+            font-size: 1.6rem;
+        }
+
+        p {
+            opacity: 0.85;
+            line-height: 1.6;
+        }
+
+        button {
+            margin-top: 18px;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            background: #38bdf8;
+            color: #020617;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h1>Cache Expired ⚠️</h1>
+    <p>
+        Your browser is holding onto an old version of this page.<br>
+        Refreshing will load the latest files and fix things.
+    </p>
+    <button onclick="hardReload()">Refresh Page 🔄</button>
+</div>
+
+<script>
+    function hardReload() {
+        if ('caches' in window) {
+            caches.keys().then(keys => {
+                keys.forEach(key => caches.delete(key));
+            });
+        }
+        location.reload(true);
+    }
+</script>
+
+</body>
+</html>
