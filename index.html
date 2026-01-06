@@ -3,84 +3,188 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Filenest Tools - Secure PDF & Image Utilities</title>
-    <meta name="description" content="Free, secure, and client-side PDF and image tools. Merge, split, compress, and convert files without uploading them to a server.">
-    <meta name="keywords" content="PDF tools, image tools, client-side, secure, merge PDF, split PDF, compress PDF, convert PDF, image conversion, privacy, WebAssembly">
-    <meta name="author" content="Uniquator">
-    <meta name="robots" content="index, follow">
 
+    <!-- Primary SEO -->
+    <title>FileNest – Free Secure PDF & Image Tools | Client-Side by Uniquator</title>
+
+    <meta name="description" content="FileNest by Uniquator offers free, fast, and secure PDF & image tools. Merge, split, compress, and convert files 100% client-side. No uploads. Total privacy.">
+    <meta name="keywords" content="FileNest, PDF tools, image tools, merge PDF, split PDF, compress PDF, convert PDF, client-side PDF tools, secure PDF tools, privacy-first tools">
+    <meta name="author" content="Uniquator">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://filenest.uniquator.me/">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="FileNest – Secure Client-Side PDF & Image Tools">
+    <meta property="og:description" content="Free privacy-first PDF & image tools. All processing happens in your browser. No uploads. No tracking.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://filenest.uniquator.me/">
+    <meta property="og:site_name" content="FileNest by Uniquator">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="FileNest – Secure PDF & Image Tools">
+    <meta name="twitter:description" content="Client-side PDF & image tools with zero uploads. Built for privacy.">
+
+    <!-- PWA / UX -->
+    <meta name="theme-color" content="#000000">
+    <link rel="manifest" href="https://filenest.uniquator.me/manifest.json">
+
+    <!-- Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="manifest" href="manifest.json">
-    <link rel="stylesheet" href="src/commonstyles.css">
-    <link rel="stylesheet" href="src/css/landing.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://filenest.uniquator.me/src/commonstyles.css">
+    <link rel="stylesheet" href="https://filenest.uniquator.me/src/css/landing.css">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "FileNest",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Web",
+      "url": "https://filenest.uniquator.me/",
+      "description": "Privacy-first client-side PDF and image tools. Merge, split, compress, and convert files without uploading.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Uniquator",
+        "url": "https://uniquator.me"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+
+    <style>
+        /* Client-side 404 Overlay */
+        #client-404 {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(6px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .error-box {
+            background: #111;
+            border: 1px solid #333;
+            padding: 40px 50px;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .error-box h1 {
+            font-size: 4rem;
+        }
+
+        .error-box code {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 4px 10px;
+            border-radius: 6px;
+            background: #222;
+            color: #fff;
+            font-size: 0.9rem;
+        }
+    </style>
 </head>
+
 <body>
 
-    <header class="fade-in">
-        <div class="logo">Filenest <span class="logogrey"></span></div>
-        <nav>
-            <a href="mailto:support@uniquator.me" class="nav-link">Support</a>
-        </nav>
-    </header>
+<header class="fade-in">
+    <div class="logo">FileNest</div>
+    <nav>
+        <a href="mailto:support@uniquator.me" class="nav-link">Support</a>
+    </nav>
+</header>
 
-    <main class="fade-in">
-        
-        <section class="hero">
-            <div class="hero-content">
-                <h1>Your Files, <span class="highlight">Your Privacy.</span></h1>
-                <p class="hero-sub">Powerful PDF and Image tools running entirely in your browser. No server uploads, no data leaks.</p>
-                <button id="start-now-btn" class="btn btn-large">
-                    Start Now <span class="material-icons">arrow_forward</span>
-                </button>
-            </div>
-            <div class="hero-visual">
-                <span class="material-icons floating-icon i1">lock</span>
-                <span class="material-icons floating-icon i2">picture_as_pdf</span>
-                <span class="material-icons floating-icon i3">image</span>
-            </div>
-        </section>
+<main class="fade-in">
 
-        <section class="features">
-            <div class="feature-card">
-                <span class="material-icons feature-icon">security</span>
-                <h3>100% Client-Side</h3>
-                <p>Files never leave your device. All processing happens locally in your browser for maximum security.</p>
-            </div>
-            <div class="feature-card">
-                <span class="material-icons">speed</span>
-                <h3>Lightning Fast</h3>
-                <p>No upload or download wait times. Instant processing powered by WebAssembly.</p>
-            </div>
-            <div class="feature-card">
-                <span class="material-icons">all_inclusive</span>
-                <h3>All-in-One Suite</h3>
-                <p>Merge, Split, Compress, Convert, and Edit. Everything you need for PDFs and Images.</p>
-            </div>
-        </section>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Secure PDF & Image Tools,<br><span class="highlight">Right in Your Browser.</span></h1>
+            <p class="hero-sub">
+                FileNest runs entirely client-side. Your files never leave your device.
+                Fast, private, and free.
+            </p>
+            <button id="start-now-btn" class="btn btn-large">
+                Start Now <span class="material-icons">arrow_forward</span>
+            </button>
+        </div>
 
-        <footer>
-            <div class="footer-links">
-                <a href="privacy.html">Privacy Policy</a>
-                <a href="terms.html">Terms & Conditions</a>
-                <a href="mailto:support.tools@verticon.tech">Contact Support</a>
-            </div>
-            <p>&copy; 2025 Uniquator Filenest. All rights reserved.</p>
-        </footer>
+        <div class="hero-visual">
+            <span class="material-icons floating-icon i1">lock</span>
+            <span class="material-icons floating-icon i2">picture_as_pdf</span>
+            <span class="material-icons floating-icon i3">image</span>
+        </div>
+    </section>
 
-    </main>
+    <section class="features">
+        <div class="feature-card">
+            <span class="material-icons">security</span>
+            <h3>Privacy-First</h3>
+            <p>No uploads. No servers. Your data stays on your device.</p>
+        </div>
+        <div class="feature-card">
+            <span class="material-icons">speed</span>
+            <h3>Instant Processing</h3>
+            <p>Powered by modern browser APIs and WebAssembly.</p>
+        </div>
+        <div class="feature-card">
+            <span class="material-icons">all_inclusive</span>
+            <h3>Complete Toolkit</h3>
+            <p>Merge, split, compress, convert PDFs and images.</p>
+        </div>
+    </section>
 
-    <script src="src/commonscript.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', async () => {
-            // Handle Start Button
-            document.getElementById('start-now-btn').addEventListener('click', async () => {
-                try {
-                    await VerticonDB.setSetting('visited_home', true);
-                } catch(e) { console.error(e); }
-                window.location.href = '/home';
-            });
-        });
-    </script>
+    <footer>
+        <div class="footer-links">
+            <a href="https://filenest.uniquator.me/privacy.html">Privacy Policy</a>
+            <a href="https://filenest.uniquator.me/terms.html">Terms & Conditions</a>
+            <a href="mailto:support@uniquator.me">Contact Support</a>
+        </div>
+        <p>&copy; 2025 Uniquator FileNest. All rights reserved.</p>
+    </footer>
+
+</main>
+
+<!-- 404 Overlay -->
+<div id="client-404">
+    <div class="error-box">
+        <h1>404</h1>
+        <p>Page not found:<br><code id="bad-path"></code></p>
+        <button id="go-home">OK</button>
+    </div>
+</div>
+
+<script src="https://filenest.uniquator.me/src/commonscript.js"></script>
+
+<script>
+(function () {
+    const allowed = ['/', '/index', '/index.html'];
+    const path = location.pathname;
+
+    if (!allowed.includes(path)) {
+        document.getElementById('bad-path').textContent = path;
+        document.getElementById('client-404').style.display = 'flex';
+        document.getElementById('go-home').onclick = () =>
+            location.href = 'https://filenest.uniquator.me';
+    }
+
+    const btn = document.getElementById('start-now-btn');
+    if (btn) btn.onclick = () =>
+        location.href = 'https://filenest.uniquator.me/home';
+})();
+</script>
+
 </body>
-
 </html>
