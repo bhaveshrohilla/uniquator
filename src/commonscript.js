@@ -217,4 +217,20 @@
     // Initialize monitor
     window.VerticonUtils.initNetworkStatusMonitor();
 
-})();
+
+})();window.VerticonUtils.showLoadingBar = function(percent = 0) {
+    let bar = document.getElementById('global-progress-bar');
+    if (!bar) {
+        bar = document.createElement('div');
+        bar.id = 'global-progress-bar';
+        bar.style.cssText =
+            'position:fixed;top:0;left:0;height:3px;background:#667eea;z-index:10001;width:0%';
+        document.body.appendChild(bar);
+    }
+    bar.style.width = percent + '%';
+};
+
+window.VerticonUtils.hideLoadingBar = function() {
+    const bar = document.getElementById('global-progress-bar');
+    if (bar) bar.remove();
+};
