@@ -116,63 +116,113 @@
 <script src="src/commonscript.js"></script>
 <script src="src/js/tools_home.js"></script>
 <script>
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
-    const refreshCacheItem = document.getElementById('refreshCacheItem');
-    const toast = document.getElementById('toast');
-    const cacheTime = document.getElementById('cacheTime');
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+const refreshCacheItem = document.getElementById('refreshCacheItem');
+const toast = document.getElementById('toast');
+const progressContainer = document.querySelector('.progress-container');
+const progressBar = document.getElementById('progressBar');
+const cacheTime = document.getElementById('cacheTime');
 
-    mobileMenuBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('active');
-        mobileMenuOverlay.classList.toggle('active');
-    });
+mobileMenuBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('active');
+    mobileMenuOverlay.classList.toggle('active');
+});
+mobileMenuOverlay.addEventListener('click', () => {
+    mobileMenu.classList.remove('active');
+    mobileMenuOverlay.classList.remove('active');
+});
 
-    mobileMenuOverlay.addEventListener('click', () => {
-        mobileMenu.classList.remove('active');
-        mobileMenuOverlay.classList.remove('active');
-    });
+refreshCacheItem.addEventListener('click', () => {
+    mobileMenu.classList.remove('active');
+    mobileMenuOverlay.classList.remove('active');
+    refreshCache();
+});
 
-    refreshCacheItem.addEventListener('click', () => {
-        mobileMenu.classList.remove('active');
-        mobileMenuOverlay.classList.remove('active');
-        refreshCache();
-    });
+function showToast(message, type='info'){
+    toast.textContent = message;
+    toast.style.background = type==='error'? '#f44336' : type==='success'? '#4caf50' : '#333';
+    toast.classList.add('show');
+    if(type!=='loading') setTimeout(()=>{toast.classList.remove('show');},3000);
+}
 
-    function showToast(message, type='info') {
-        toast.textContent = message;
-        toast.className = `toast show ${type}`;
-        if(type!=='loading') setTimeout(()=>{toast.classList.remove('show');},3000);
+async function checkInternet(timeout=2500){
+    try{
+        const controller = new AbortController();
+        const id = setTimeout(()=>controller.abort(),timeout);
+        const res = await fetch('int_ck.txt',{signal:controller.signal, cache:'no-store'});
+        clearTimeout(id);
+        return res.ok;
+    }catch{
+        return false;
+    }
+}
+
+async function refreshCache(){
+    if(!navigator.serviceWorker || !navigator.serviceWorker.controller){
+        showToast('Service Worker not available','error');
+        return;
     }
 
-    function refreshCache() {
-        if(!navigator.serviceWorker || !navigator.serviceWorker.controller) {
-            showToast('Service Worker not available', 'error');
-            return;
+    const online = await checkInternet();
+    if(!online){
+        showToast('No Internet - cannot refresh cache','error');
+        return;
+    }
+
+    showToast('Refreshing cache...','loading');
+    progressContainer.style.display = 'block';
+    progressBar.style.width = '0%';
+
+    // Send message to SW to start caching
+    const sw = navigator.serviceWorker.controller;
+    let progress = 0;
+    const fakeProgressInterval = setInterval(()=>{
+        progress = Math.min(progress + 5, 95);
+        progressBar.style.width = progress+'%';
+    },200);
+
+    // Wait for SW response
+    const channel = new MessageChannel();
+    channel.port1.onmessage = (e)=>{
+        if(e.data.type==='CACHE_PROGRESS'){
+            progressBar.style.width = e.data.percent+'%';
         }
-        showToast('Refreshing cache...', 'loading');
-        navigator.serviceWorker.controller.postMessage({type:'RECACHE_ALL'});
-        setTimeout(()=>{ showToast('Cache refreshed successfully!', 'success'); updateCacheTime(); },2000);
-    }
-
-    async function updateCacheTime() {
-        if(!navigator.serviceWorker || !navigator.serviceWorker.controller) return;
-        const registration = await navigator.serviceWorker.getRegistration();
-        if(!registration) return;
-        const cacheName = 'verticon-tools-v2';
-        const cache = await caches.open(cacheName);
-        const keys = await cache.keys();
-        if(keys.length>0){
-            const meta = await caches.match('index.html'); 
-            cacheTime.textContent = new Date().toLocaleString();
+        if(e.data.type==='CACHE_DONE'){
+            clearInterval(fakeProgressInterval);
+            progressBar.style.width = '100%';
+            setTimeout(()=>{
+                progressContainer.style.display = 'none';
+                showToast('Cache refreshed successfully!','success');
+                updateCacheTime();
+            },500);
         }
+    };
+    sw.postMessage({type:'RECACHE_ALL'}, [channel.port2]);
+}
+
+async function updateCacheTime(){
+    if(!navigator.serviceWorker || !navigator.serviceWorker.controller) return;
+    const registration = await navigator.serviceWorker.getRegistration();
+    if(!registration) return;
+    const cacheName = 'verticon-tools-v2';
+    const cache = await caches.open(cacheName);
+    const keys = await cache.keys();
+    if(keys.length>0){
+        cacheTime.textContent = new Date().toLocaleString();
     }
+}
 
-    document.addEventListener('DOMContentLoaded', () => {
-        updateCacheTime();
-        VerticonDB.setSetting('visited_home', true).catch(console.error);
+document.addEventListener('DOMContentLoaded', () => {
+    updateCacheTime();
+    VerticonDB.setSetting('visited_home', true).catch(console.error);
+
+    // Automatic offline check at load
+    checkInternet().then(online=>{
+        if(!online) showToast('No Internet detected','error');
     });
-</script>
-
+});
+                               </script>
 </body>
 </html>
